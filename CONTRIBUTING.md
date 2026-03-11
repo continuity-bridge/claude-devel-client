@@ -182,6 +182,12 @@ See docs/code-style.md in this repository for complete guidelines.
 - Complexity without clear user benefit
 - Features that conflict with roadmap priorities
 
+**Foundational Alignment:** 
+- Contributions should also allow the client to natively parse and display data from 
+  - our continuity-bridge .claude/FOUNDATION structure
+  - our continuity-bridge .claude/context structure
+  - our continuity-bridge standalone utilities and services 
+
 This isn't personal - it's about keeping the project focused.
 
 ---
