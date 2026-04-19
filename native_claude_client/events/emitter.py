@@ -3,7 +3,7 @@ Event emitter for detecting conditions and publishing events.
 """
 
 import uuid
-from datetime import datetime
+from datetime import datetime, UTC
 from typing import Optional
 import logging
 
@@ -32,11 +32,11 @@ class EventEmitter:
             prior_session_id: UUID of previous session if resuming
         """
         self.session_id = str(uuid.uuid4())
-        self.session_start_time = datetime.utcnow()
+        self.session_start_time = datetime.now(UTC)
         
         event = {
             "event": "session_start",
-            "timestamp": self.session_start_time.isoformat() + "Z",
+            "timestamp": self.session_start_time.isoformat().replace("+00:00", "Z"),
             "session_id": self.session_id,
             "platform": "native-claude-client",
             "domain": domain,
@@ -57,11 +57,11 @@ class EventEmitter:
             logger.warning("end_session called but no session active")
             return
         
-        duration = (datetime.utcnow() - self.session_start_time).total_seconds()
+        duration = (datetime.now(UTC) - self.session_start_time).total_seconds()
         
         event = {
             "event": "session_end",
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
             "session_id": self.session_id,
             "trigger": trigger,
             "duration_seconds": duration
@@ -82,7 +82,7 @@ class EventEmitter:
         """
         event = {
             "event": "tool_call_failed",
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
             "session_id": self.session_id,
             "tool_name": tool_name,
             "tool_family": tool_family,
@@ -103,7 +103,7 @@ class EventEmitter:
         """
         event = {
             "event": "tool_call_success",
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
             "session_id": self.session_id,
             "tool_name": tool_name,
             "tool_family": tool_family

@@ -1,2 +1,8 @@
-requests>=2.31.0
-pytest>=7.4.0
+# Development installation
+# Install with: pip install -e ".[dev]"
+# Or use: make install-dev
+
+# Core dependencies are in pyproject.toml
+# This file is kept for compatibility with tools that expect it
+
+-e .
