@@ -1,6 +1,6 @@
 # erebos
 
-\*\*Erebos - Network Ollama Testing CLI for Claude"
+Erebos - Network Ollama Testing CLI for Claude
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11+-green.svg)](https://python.org)
