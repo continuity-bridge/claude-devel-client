@@ -1,6 +1,8 @@
 # erebos
 
-Erebos - Network Ollama Testing CLI for Claude
+~~erebos - a {account,auth,model,os,provider,session}-agnostic harness~~
+
+erebos - the agnostic harness
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11+-green.svg)](https://python.org)
@@ -10,7 +12,7 @@ Erebos - Network Ollama Testing CLI for Claude
 
 ## What is this?
 
-A native Linux desktop application for Claude that goes beyond chat - it's an **agentic development environment** with intelligent automation:
+A native Linux desktop application for LLMs that goes beyond chat - it's an **agentic development environment** with intelligent automation:
 
 - 🖥️ **Native GTK4/Wayland** - Truly native Linux UI, not Electron
 - 🤖 **Hook System** - Event-driven automation for tool loading, session persistence, and context management
