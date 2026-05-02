@@ -83,7 +83,7 @@ class NetworkOllamaDiscovery:
         try:
             client = Client(host=f"http://{host}:{port}")
             models = client.list()
-            return [m['name'] for m in models.get('models', [])]
+            return [m['model'] for m in models.get('models', [])]
         except Exception as e:
             print(f"⚠ Could not fetch models from {host}: {e}")
             return []
@@ -118,7 +118,7 @@ class NetworkOllamaRouter:
             json.dump({'nodules': self.nodules}, f, indent=2)
         print(f"✓ Config saved to {self.config_path}")
     
-    def add_nodule(self, host: str, port: int = 11434, label: str = None, priority: int = 1):
+    def add_nodule(self, host: str, port: int = 11434, label: Optional[str] = None, priority: int = 1):
         """Add a nodule to the configuration"""
         nodule = {
             'host': host,
@@ -158,7 +158,7 @@ class NetworkOllamaRouter:
         """Test if a nodule is reachable"""
         return NetworkOllamaDiscovery._test_ollama_host(nodule['host'], nodule['port'])
     
-    def run_request(self, prompt: str, model: str = "llama3.2", nodule_index: int = None):
+    def run_request(self, prompt: str, model: str = "llama3.2", nodule_index: Optional[int] = None):
         """
         Run a request through the network routing system
         
@@ -242,7 +242,7 @@ def cmd_discover(args):
             label = f"Ollama-{instance['host'].split('.')[-1]}"
             router.add_nodule(
                 host=instance['host'],
-                port=instance['port'],
+                port=int(instance['port']),
                 label=label,
                 priority=i
             )
